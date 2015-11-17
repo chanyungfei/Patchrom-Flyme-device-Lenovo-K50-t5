@@ -1,0 +1,1 @@
+Base on Android 5.1 For Lenovo k3note (k50t5).
