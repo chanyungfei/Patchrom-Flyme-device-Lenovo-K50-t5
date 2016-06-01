@@ -344,6 +344,208 @@
     goto/16 :goto_0
 .end method
 
+.method public static final addLenovoLinks(Landroid/text/Spannable;I)Z
+    .locals 12
+    .param p0, "text"    # Landroid/text/Spannable;
+    .param p1, "mask"    # I
+
+    .prologue
+    const/4 v5, 0x0
+
+    const/4 v11, 0x1
+
+    const/4 v10, 0x0
+
+    .line 288
+    if-nez p1, :cond_0
+
+    move v1, v10
+
+    .line 330
+    :goto_0
+    return v1
+
+    .line 292
+    :cond_0
+    invoke-interface {p0}, Landroid/text/Spannable;->length()I
+
+    move-result v1
+
+    const-class v2, Landroid/text/style/URLSpan;
+
+    invoke-interface {p0, v10, v1, v2}, Landroid/text/Spannable;->getSpans(IILjava/lang/Class;)[Ljava/lang/Object;
+
+    move-result-object v9
+
+    check-cast v9, [Landroid/text/style/URLSpan;
+
+    .line 294
+    .local v9, "old":[Landroid/text/style/URLSpan;
+    array-length v1, v9
+
+    add-int/lit8 v6, v1, -0x1
+
+    .local v6, "i":I
+    :goto_1
+    if-ltz v6, :cond_1
+
+    .line 295
+    aget-object v1, v9, v6
+
+    invoke-interface {p0, v1}, Landroid/text/Spannable;->removeSpan(Ljava/lang/Object;)V
+
+    .line 294
+    add-int/lit8 v6, v6, -0x1
+
+    goto :goto_1
+
+    .line 298
+    :cond_1
+    new-instance v0, Ljava/util/ArrayList;
+
+    invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
+
+    .line 300
+    .local v0, "links":Ljava/util/ArrayList;, "Ljava/util/ArrayList<Landroid/text/util/LinkSpec;>;"
+    and-int/lit8 v1, p1, 0x1
+
+    if-eqz v1, :cond_2
+
+    .line 301
+    sget-object v2, Landroid/util/Patterns;->LENOVO_WEB_URL:Ljava/util/regex/Pattern;
+
+    const/4 v1, 0x3
+
+    new-array v3, v1, [Ljava/lang/String;
+
+    const-string v1, "http://"
+
+    aput-object v1, v3, v10
+
+    const-string v1, "https://"
+
+    aput-object v1, v3, v11
+
+    const/4 v1, 0x2
+
+    const-string v4, "rtsp://"
+
+    aput-object v4, v3, v1
+
+    sget-object v4, Landroid/text/util/Linkify;->sUrlMatchFilter:Landroid/text/util/Linkify$MatchFilter;
+
+    move-object v1, p0
+
+    invoke-static/range {v0 .. v5}, Landroid/text/util/Linkify;->gatherLenovoLinks(Ljava/util/ArrayList;Landroid/text/Spannable;Ljava/util/regex/Pattern;[Ljava/lang/String;Landroid/text/util/Linkify$MatchFilter;Landroid/text/util/Linkify$TransformFilter;)V
+
+    .line 306
+    :cond_2
+    and-int/lit8 v1, p1, 0x2
+
+    if-eqz v1, :cond_3
+
+    .line 307
+    sget-object v2, Landroid/util/Patterns;->EMAIL_ADDRESS:Ljava/util/regex/Pattern;
+
+    new-array v3, v11, [Ljava/lang/String;
+
+    const-string v1, "mailto:"
+
+    aput-object v1, v3, v10
+
+    move-object v1, p0
+
+    move-object v4, v5
+
+    invoke-static/range {v0 .. v5}, Landroid/text/util/Linkify;->gatherLinks(Ljava/util/ArrayList;Landroid/text/Spannable;Ljava/util/regex/Pattern;[Ljava/lang/String;Landroid/text/util/Linkify$MatchFilter;Landroid/text/util/Linkify$TransformFilter;)V
+
+    .line 311
+    :cond_3
+    and-int/lit8 v1, p1, 0x4
+
+    if-eqz v1, :cond_4
+
+    .line 312
+    sget-object v2, Landroid/util/Patterns;->PHONE:Ljava/util/regex/Pattern;
+
+    new-array v3, v11, [Ljava/lang/String;
+
+    const-string v1, "tel:"
+
+    aput-object v1, v3, v10
+
+    sget-object v4, Landroid/text/util/Linkify;->sPhoneNumberMatchFilter:Landroid/text/util/Linkify$MatchFilter;
+
+    sget-object v5, Landroid/text/util/Linkify;->sPhoneNumberTransformFilter:Landroid/text/util/Linkify$TransformFilter;
+
+    move-object v1, p0
+
+    invoke-static/range {v0 .. v5}, Landroid/text/util/Linkify;->gatherLinks(Ljava/util/ArrayList;Landroid/text/Spannable;Ljava/util/regex/Pattern;[Ljava/lang/String;Landroid/text/util/Linkify$MatchFilter;Landroid/text/util/Linkify$TransformFilter;)V
+
+    .line 316
+    :cond_4
+    and-int/lit8 v1, p1, 0x8
+
+    if-eqz v1, :cond_5
+
+    .line 317
+    invoke-static {v0, p0}, Landroid/text/util/Linkify;->gatherMapLinks(Ljava/util/ArrayList;Landroid/text/Spannable;)V
+
+    .line 320
+    :cond_5
+    invoke-static {v0}, Landroid/text/util/Linkify;->pruneOverlaps(Ljava/util/ArrayList;)V
+
+    .line 322
+    invoke-virtual {v0}, Ljava/util/ArrayList;->size()I
+
+    move-result v1
+
+    if-nez v1, :cond_6
+
+    move v1, v10
+
+    .line 323
+    goto :goto_0
+
+    .line 326
+    :cond_6
+    invoke-virtual {v0}, Ljava/util/ArrayList;->iterator()Ljava/util/Iterator;
+
+    move-result-object v7
+
+    .local v7, "i$":Ljava/util/Iterator;
+    :goto_2
+    invoke-interface {v7}, Ljava/util/Iterator;->hasNext()Z
+
+    move-result v1
+
+    if-eqz v1, :cond_7
+
+    invoke-interface {v7}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+
+    move-result-object v8
+
+    check-cast v8, Landroid/text/util/LinkSpec;
+
+    .line 327
+    .local v8, "link":Landroid/text/util/LinkSpec;
+    iget-object v1, v8, Landroid/text/util/LinkSpec;->url:Ljava/lang/String;
+
+    iget v2, v8, Landroid/text/util/LinkSpec;->start:I
+
+    iget v3, v8, Landroid/text/util/LinkSpec;->end:I
+
+    invoke-static {v1, v2, v3, p0}, Landroid/text/util/Linkify;->applyLink(Ljava/lang/String;IILandroid/text/Spannable;)V
+
+    goto :goto_2
+
+    .end local v8    # "link":Landroid/text/util/LinkSpec;
+    :cond_7
+    move v1, v11
+
+    .line 330
+    goto/16 :goto_0
+.end method
 .method public static final addLinks(Landroid/text/Spannable;Ljava/util/regex/Pattern;Ljava/lang/String;)Z
     .locals 1
     .param p0, "text"    # Landroid/text/Spannable;
@@ -1212,6 +1414,97 @@
     move-object v0, p1
 
     move-object v1, p0
+
+    .line 345
+    invoke-static/range {v0 .. v5}, Landroid/text/util/Linkify;->gatherLinks(Ljava/util/ArrayList;Landroid/text/Spannable;Ljava/util/regex/Pattern;[Ljava/lang/String;Landroid/text/util/Linkify$MatchFilter;Landroid/text/util/Linkify$TransformFilter;)V
+
+    .line 346
+    return-void
+.end method
+
+.method private static final gatherLenovoLinks(Ljava/util/ArrayList;Landroid/text/Spannable;Ljava/util/regex/Pattern;[Ljava/lang/String;Landroid/text/util/Linkify$MatchFilter;Landroid/text/util/Linkify$TransformFilter;)V
+    .locals 7
+    .param p1, "s"    # Landroid/text/Spannable;
+    .param p2, "pattern"    # Ljava/util/regex/Pattern;
+    .param p3, "schemes"    # [Ljava/lang/String;
+    .param p4, "matchFilter"    # Landroid/text/util/Linkify$MatchFilter;
+    .param p5, "transformFilter"    # Landroid/text/util/Linkify$TransformFilter;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Ljava/util/ArrayList",
+            "<",
+            "Landroid/text/util/LinkSpec;",
+            ">;",
+            "Landroid/text/Spannable;",
+            "Ljava/util/regex/Pattern;",
+            "[",
+            "Ljava/lang/String;",
+            "Landroid/text/util/Linkify$MatchFilter;",
+            "Landroid/text/util/Linkify$TransformFilter;",
+            ")V"
+        }
+    .end annotation
+
+    .prologue
+    .line 336
+    .local p0, "links":Ljava/util/ArrayList;, "Ljava/util/ArrayList<Landroid/text/util/LinkSpec;>;"
+    new-instance v1, Landroid/text/SpannableStringBuilder;
+
+    invoke-direct {v1}, Landroid/text/SpannableStringBuilder;-><init>()V
+
+    .line 337
+    .local v1, "b":Landroid/text/SpannableStringBuilder;
+    const/4 v6, 0x0
+
+    .local v6, "i":I
+    :goto_0
+    invoke-interface {p1}, Landroid/text/Spannable;->length()I
+
+    move-result v0
+
+    if-ge v6, v0, :cond_1
+
+    .line 338
+    invoke-interface {p1, v6}, Landroid/text/Spannable;->charAt(I)C
+
+    move-result v0
+
+    const/16 v2, 0x80
+
+    if-lt v0, v2, :cond_0
+
+    .line 339
+    const/16 v0, 0x20
+
+    invoke-virtual {v1, v0}, Landroid/text/SpannableStringBuilder;->append(C)Landroid/text/SpannableStringBuilder;
+
+    .line 337
+    :goto_1
+    add-int/lit8 v6, v6, 0x1
+
+    goto :goto_0
+
+    .line 341
+    :cond_0
+    invoke-interface {p1, v6}, Landroid/text/Spannable;->charAt(I)C
+
+    move-result v0
+
+    invoke-virtual {v1, v0}, Landroid/text/SpannableStringBuilder;->append(C)Landroid/text/SpannableStringBuilder;
+
+    goto :goto_1
+
+    :cond_1
+    move-object v0, p0
+
+    move-object v2, p2
+
+    move-object v3, p3
+
+    move-object v4, p4
+
+    move-object v5, p5
 
     .line 345
     invoke-static/range {v0 .. v5}, Landroid/text/util/Linkify;->gatherLinks(Ljava/util/ArrayList;Landroid/text/Spannable;Ljava/util/regex/Pattern;[Ljava/lang/String;Landroid/text/util/Linkify$MatchFilter;Landroid/text/util/Linkify$TransformFilter;)V
