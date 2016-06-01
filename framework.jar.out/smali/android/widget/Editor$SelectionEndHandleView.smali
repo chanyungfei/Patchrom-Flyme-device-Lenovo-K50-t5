@@ -222,6 +222,10 @@
 
     move-result v3
 
+    invoke-direct/range {p0 .. p0}, Landroid/widget/Editor$SelectionEndHandleView;->flymeGetSelectionEnd()I
+
+    move-result v3
+
     const/4 v4, 0x0
 
     invoke-virtual {p0, v3, v4}, Landroid/widget/Editor$SelectionEndHandleView;->positionAtCursorOffset(IZ)V
@@ -273,4 +277,21 @@
 
     .line 4481
     return-void
+.end method
+
+.method private flymeGetSelectionEnd()I
+    .locals 1
+
+    .prologue
+    iget-object v0, p0, Landroid/widget/Editor$SelectionEndHandleView;->this$0:Landroid/widget/Editor;
+
+    invoke-virtual {v0}, Landroid/widget/Editor;->flymeGetFieldTextView()Landroid/widget/TextView;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Landroid/widget/TextView;->getSelectionEnd()I
+
+    move-result v0
+
+    return v0
 .end method
