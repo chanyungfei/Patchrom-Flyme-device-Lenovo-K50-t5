@@ -40,14 +40,14 @@ RESOLUTION := 1080x1920
 # The default value is app or pri-app which not need to configure.
 # You can configure the directory name which relative to the vendor/system directory.
 #-----------------------------------------------------------------------------
-#vendor_remove_dirs := vendor/operator/app
+vendor_remove_dirs := preload media/images media/video
 
 ##############################################################################
 # The value decides the file which you want to remove in the vendor directory for the ota package.
 # The default value is nothing.
 # You can configure the file name which relative to the vendor/system directory.
 #-----------------------------------------------------------------------------
-#vendor_remove_files := bin/zchgd
+vendor_remove_files := media/loading.zip media/start.mp4 media/poweroff.mp4 recovery-from-boot.bak
 
 ##############################################################################
 # The value decides the vendor apk which you want to save in the vendor directory for the ota package.
@@ -89,14 +89,14 @@ vendor_modify_jars := android.policy framework mediatek-framework mediatek-telep
 # You can configure the board system file path which relative to the system directory in the board release.
 # You should add "lib64/libwebviewchromium.so" for 64 bit system.
 #-----------------------------------------------------------------------------
-board_saved_files := lib/libwebviewchromium.so lib64/libwebviewchromium.so
+board_saved_files := lib/libwebviewchromium.so lib64/libwebviewchromium.so bin/bootanimation bin/shutdownanimation media/bootanimation.zip media/shutanimation.zip
 
 ##############################################################################
 # The value decides which board system apk you want to remove.
 # The default value is nothing.
 # You can configure the board system apk name in the value.
 #-----------------------------------------------------------------------------
-#board_remove_apps := LogReport
+board_remove_apps := NfcNci
 
 ##############################################################################
 # The value decides which apk you want to modify, when the apk is based on the board system apk.
