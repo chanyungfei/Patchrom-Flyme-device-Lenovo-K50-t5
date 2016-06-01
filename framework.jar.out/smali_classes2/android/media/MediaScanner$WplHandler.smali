@@ -131,7 +131,7 @@
     iget-object v2, p0, Landroid/media/MediaScanner$WplHandler;->playListDirectory:Ljava/lang/String;
 
     # invokes: Landroid/media/MediaScanner;->cachePlaylistEntry(Ljava/lang/String;Ljava/lang/String;)V
-    invoke-static {v1, v0, v2}, Landroid/media/MediaScanner;->access$3700(Landroid/media/MediaScanner;Ljava/lang/String;Ljava/lang/String;)V
+    invoke-static {v1, v0, v2}, Landroid/media/MediaScanner;->access$2900(Landroid/media/MediaScanner;Ljava/lang/String;Ljava/lang/String;)V
 
     .line 2234
     :cond_0
