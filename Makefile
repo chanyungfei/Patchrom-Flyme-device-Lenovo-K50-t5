@@ -60,7 +60,7 @@ vendor_saved_apps := Bluetooth KeyChain HTMLViewer UserDictionaryProvider Backup
 		     MaxxAudio MaxxService Stk1 MobileNetworkSettings2 SimSettings2 SoundSettings \
 		     WifiSettings LenovoKeyguardSettings LenovoBreathingLight LenovoLockScreenPlugin \
 		     LenovoBlackGestures LenovoFactoryMode LenovoSingleHand LenovoSchedulePowerOnOff \
-		     AMapNetworkLocation FMService PacProcessor WideTouch
+		     AMapNetworkLocation FMService PacProcessor WideTouch LenovoCamera
 
 ##############################################################################
 # The value decides which vendor apk you want to modify.
