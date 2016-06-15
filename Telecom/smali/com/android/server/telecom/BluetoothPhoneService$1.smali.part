@@ -1,0 +1,57 @@
+.method public restrictDualTalk()Z
+    .locals 5
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Landroid/os/RemoteException;
+        }
+    .end annotation
+
+    .prologue
+    const/4 v0, 0x1
+
+    const/4 v4, 0x0
+
+    .line 192
+    const-string v1, "BluetoothPhoneService"
+
+    const-string v2, "restrictDualTalk"
+
+    new-array v3, v4, [Ljava/lang/Object;
+
+    invoke-static {v1, v2, v3}, Lcom/android/server/telecom/Log;->i(Ljava/lang/String;Ljava/lang/String;[Ljava/lang/Object;)V
+
+    .line 193
+    const-string v1, "ro.mtk_dt_support"
+
+    invoke-static {v1, v4}, Landroid/os/SystemProperties;->getInt(Ljava/lang/String;I)I
+
+    move-result v1
+
+    if-ne v1, v0, :cond_0
+
+    .line 194
+    iget-object v0, p0, Lcom/android/server/telecom/BluetoothPhoneService$1;->this$0:Lcom/android/server/telecom/BluetoothPhoneService;
+
+    # invokes: Lcom/android/server/telecom/BluetoothPhoneService;->enforceModifyPermission()V
+    invoke-static {v0}, Lcom/android/server/telecom/BluetoothPhoneService;->access$000(Lcom/android/server/telecom/BluetoothPhoneService;)V
+
+    .line 195
+    iget-object v0, p0, Lcom/android/server/telecom/BluetoothPhoneService$1;->this$0:Lcom/android/server/telecom/BluetoothPhoneService;
+
+    const/16 v1, 0x9
+
+    # invokes: Lcom/android/server/telecom/BluetoothPhoneService;->sendSynchronousRequest(I)Ljava/lang/Object;
+    invoke-static {v0, v1}, Lcom/android/server/telecom/BluetoothPhoneService;->access$100(Lcom/android/server/telecom/BluetoothPhoneService;I)Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Ljava/lang/Boolean;
+
+    invoke-virtual {v0}, Ljava/lang/Boolean;->booleanValue()Z
+
+    move-result v0
+
+    .line 197
+    :cond_0
+    return v0
+.end method
