@@ -318,18 +318,6 @@
     .line 627
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 1415
-    const/4 v0, 0x0
-
-    iput-object v0, p0, Landroid/content/res/Configuration;->mVibeExtraConfiguration:Landroid/content/res/VibeExtraConfiguration;
-
-    .line 629
-    new-instance v0, Landroid/content/res/VibeExtraConfiguration;
-
-    invoke-direct {v0}, Landroid/content/res/VibeExtraConfiguration;-><init>()V
-
-    iput-object v0, p0, Landroid/content/res/Configuration;->mVibeExtraConfiguration:Landroid/content/res/VibeExtraConfiguration;
-
     .line 631
     invoke-virtual {p0}, Landroid/content/res/Configuration;->setToDefaults()V
 
@@ -345,18 +333,6 @@
     .line 637
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 1415
-    const/4 v0, 0x0
-
-    iput-object v0, p0, Landroid/content/res/Configuration;->mVibeExtraConfiguration:Landroid/content/res/VibeExtraConfiguration;
-
-    .line 639
-    new-instance v0, Landroid/content/res/VibeExtraConfiguration;
-
-    invoke-direct {v0}, Landroid/content/res/VibeExtraConfiguration;-><init>()V
-
-    iput-object v0, p0, Landroid/content/res/Configuration;->mVibeExtraConfiguration:Landroid/content/res/VibeExtraConfiguration;
-
     .line 641
     invoke-virtual {p0, p1}, Landroid/content/res/Configuration;->setTo(Landroid/content/res/Configuration;)V
 
@@ -371,18 +347,6 @@
     .prologue
     .line 1266
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
-
-    .line 1415
-    const/4 v0, 0x0
-
-    iput-object v0, p0, Landroid/content/res/Configuration;->mVibeExtraConfiguration:Landroid/content/res/VibeExtraConfiguration;
-
-    .line 1268
-    new-instance v0, Landroid/content/res/VibeExtraConfiguration;
-
-    invoke-direct {v0}, Landroid/content/res/VibeExtraConfiguration;-><init>()V
-
-    iput-object v0, p0, Landroid/content/res/Configuration;->mVibeExtraConfiguration:Landroid/content/res/VibeExtraConfiguration;
 
     .line 1270
     invoke-virtual {p0, p1}, Landroid/content/res/Configuration;->readFromParcel(Landroid/os/Parcel;)V
@@ -739,74 +703,6 @@
     return-object v0
 .end method
 
-.method private static getDefaultFontPath()Ljava/lang/String;
-    .locals 4
-
-    .prologue
-    .line 1431
-    const/4 v0, 0x0
-
-    .line 1432
-    .local v0, "default_File_font_path":Ljava/lang/String;
-    const-string v1, "row"
-
-    const-string v2, "ro.lenovo.region"
-
-    const-string v3, "prc"
-
-    invoke-static {v2, v3}, Landroid/os/SystemProperties;->get(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
-
-    move-result-object v2
-
-    invoke-virtual {v1, v2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result v1
-
-    if-eqz v1, :cond_0
-
-    .line 1433
-    const-string v0, "/system/fonts/DroidSansFallback.ttf"
-
-    .line 1437
-    :goto_0
-    return-object v0
-
-    .line 1435
-    :cond_0
-    const-string v0, "/system/fonts/LenovoFont.ttf"
-
-    goto :goto_0
-.end method
-
-.method public static getFontPath()Ljava/lang/String;
-    .locals 2
-
-    .prologue
-    .line 1442
-    invoke-static {}, Landroid/content/res/VibeExtraConfiguration;->getVIBEUIFontPath()Ljava/lang/String;
-
-    move-result-object v0
-
-    .line 1444
-    .local v0, "fontPath":Ljava/lang/String;
-    const-string v1, ""
-
-    invoke-virtual {v1, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result v1
-
-    if-eqz v1, :cond_0
-
-    .line 1445
-    invoke-static {}, Landroid/content/res/Configuration;->getDefaultFontPath()Ljava/lang/String;
-
-    move-result-object v0
-
-    .line 1448
-    :cond_0
-    return-object v0
-.end method
-
 .method private static getScreenLayoutNoDirection(I)I
     .locals 1
     .param p0, "screenLayout"    # I
@@ -816,20 +712,6 @@
     and-int/lit16 v0, p0, -0xc1
 
     return v0
-.end method
-
-.method public static getVibeFontName()Ljava/lang/String;
-    .locals 1
-
-    .prologue
-    .line 1453
-    invoke-static {}, Landroid/content/res/VibeExtraConfiguration;->getVIBEUIFontName()Ljava/lang/String;
-
-    move-result-object v0
-
-    .line 1454
-    .local v0, "fontName":Ljava/lang/String;
-    return-object v0
 .end method
 
 .method public static localeToResourceQualifier(Ljava/util/Locale;)Ljava/lang/String;
@@ -1022,27 +904,16 @@
 
     or-int/2addr v0, v1
 
-    const/high16 v1, 0x20000000
-
-    or-int/2addr v0, v1
-
     and-int/2addr v0, p0
 
-    if-nez v0, :cond_0
+    if-eqz v0, :cond_0
 
-    invoke-static {p0}, Landroid/content/res/VibeExtraConfiguration;->needNewResources(I)Z
-
-    move-result v0
-
-    if-eqz v0, :cond_1
-
-    :cond_0
     const/4 v0, 0x1
 
     :goto_0
     return v0
 
-    :cond_1
+    :cond_0
     const/4 v0, 0x0
 
     goto :goto_0
@@ -1469,6 +1340,10 @@
 
     .line 1501
     :cond_0
+    iget-object v1, p0, Landroid/content/res/Configuration;->locale:Ljava/util/Locale;
+
+    if-eqz v1, :cond_1
+
     iget-object v1, p0, Landroid/content/res/Configuration;->locale:Ljava/util/Locale;
 
     invoke-virtual {v1}, Ljava/util/Locale;->getLanguage()Ljava/lang/String;
@@ -2161,120 +2036,6 @@
     .end packed-switch
 .end method
 
-.method private setVibeFontName(Ljava/lang/String;)V
-    .locals 3
-    .param p1, "fontName"    # Ljava/lang/String;
-
-    .prologue
-    .line 1425
-    const-string v0, "Typeface"
-
-    new-instance v1, Ljava/lang/StringBuilder;
-
-    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string v2, "setVibeFontName("
-
-    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v1
-
-    invoke-virtual {v1, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v1
-
-    const-string v2, ")"
-
-    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v1
-
-    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v1
-
-    invoke-static {v0, v1}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 1426
-    iget-object v0, p0, Landroid/content/res/Configuration;->mVibeExtraConfiguration:Landroid/content/res/VibeExtraConfiguration;
-
-    if-eqz p1, :cond_0
-
-    .end local p1    # "fontName":Ljava/lang/String;
-    :goto_0
-    iput-object p1, v0, Landroid/content/res/VibeExtraConfiguration;->mFontName:Ljava/lang/String;
-
-    .line 1428
-    return-void
-
-    .line 1426
-    .restart local p1    # "fontName":Ljava/lang/String;
-    :cond_0
-    const-string p1, ""
-
-    goto :goto_0
-.end method
-
-.method private setVibeFontPath(ILjava/lang/String;)V
-    .locals 3
-    .param p1, "type"    # I
-    .param p2, "fontPath"    # Ljava/lang/String;
-
-    .prologue
-    .line 1418
-    const-string v0, "Typeface"
-
-    new-instance v1, Ljava/lang/StringBuilder;
-
-    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string v2, "setVibeFontPath("
-
-    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v1
-
-    invoke-virtual {v1, p1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
-
-    move-result-object v1
-
-    const-string v2, ", "
-
-    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v1
-
-    invoke-virtual {v1, p2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v1
-
-    const-string v2, ")"
-
-    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v1
-
-    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v1
-
-    invoke-static {v0, v1}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 1419
-    const/4 v0, 0x1
-
-    if-ne p1, v0, :cond_0
-
-    .line 1420
-    iget-object v0, p0, Landroid/content/res/Configuration;->mVibeExtraConfiguration:Landroid/content/res/VibeExtraConfiguration;
-
-    iput-object p2, v0, Landroid/content/res/VibeExtraConfiguration;->mFontPath:Ljava/lang/String;
-
-    .line 1422
-    :cond_0
-    return-void
-.end method
-
 .method public static writeXmlAttrs(Lorg/xmlpull/v1/XmlSerializer;Landroid/content/res/Configuration;)V
     .locals 2
     .param p0, "xml"    # Lorg/xmlpull/v1/XmlSerializer;
@@ -2793,18 +2554,6 @@
 
     sub-int v2, v3, v4
 
-    .line 1322
-    if-nez v2, :cond_0
-
-    .line 1323
-    iget-object v3, p0, Landroid/content/res/Configuration;->mVibeExtraConfiguration:Landroid/content/res/VibeExtraConfiguration;
-
-    iget-object v4, p1, Landroid/content/res/Configuration;->mVibeExtraConfiguration:Landroid/content/res/VibeExtraConfiguration;
-
-    invoke-virtual {v3, v4}, Landroid/content/res/VibeExtraConfiguration;->compareTo(Landroid/content/res/VibeExtraConfiguration;)I
-
-    move-result v2
-
     invoke-static {p0, p1, v2}, Landroid/content/res/Configuration$FlymeInjector;->compareTo(Landroid/content/res/Configuration;Landroid/content/res/Configuration;I)I
 
     move-result v2
@@ -3155,17 +2904,10 @@
 
     .line 1110
     :cond_12
-    iget-object v2, p0, Landroid/content/res/Configuration;->mVibeExtraConfiguration:Landroid/content/res/VibeExtraConfiguration;
-
-    iget-object v3, p1, Landroid/content/res/Configuration;->mVibeExtraConfiguration:Landroid/content/res/VibeExtraConfiguration;
-
-    invoke-virtual {v2, v3}, Landroid/content/res/VibeExtraConfiguration;->diff(Landroid/content/res/VibeExtraConfiguration;)I
-
-    move-result v2
-
-    or-int/2addr v0, v2
 
     invoke-static {p0, p1, v0}, Landroid/content/res/Configuration$FlymeInjector;->diff(Landroid/content/res/Configuration;Landroid/content/res/Configuration;I)I
+
+    move-result v0
 
     .line 1113
     return v0
@@ -3398,17 +3140,6 @@
 
     add-int v0, v1, v2
 
-    .line 1362
-    mul-int/lit8 v1, v0, 0x1f
-
-    iget-object v2, p0, Landroid/content/res/Configuration;->mVibeExtraConfiguration:Landroid/content/res/VibeExtraConfiguration;
-
-    invoke-virtual {v2}, Landroid/content/res/VibeExtraConfiguration;->hashCode()I
-
-    move-result v2
-
-    add-int v0, v1, v2
-
     invoke-static {p0, v0}, Landroid/content/res/Configuration$FlymeInjector;->hashCode(Landroid/content/res/Configuration;I)I
 
     move-result v0
@@ -3523,44 +3254,46 @@
 .end method
 
 .method public readFromParcel(Landroid/os/Parcel;)V
-    .locals 6
+    .locals 5
     .param p1, "source"    # Landroid/os/Parcel;
 
     .prologue
-    const/4 v2, 0x0
-
-    const/4 v1, 0x1
+    const/4 v0, 0x1
 
     .line 1221
     invoke-virtual {p1}, Landroid/os/Parcel;->readFloat()F
 
-    move-result v0
+    move-result v1
 
-    iput v0, p0, Landroid/content/res/Configuration;->fontScale:F
+    iput v1, p0, Landroid/content/res/Configuration;->fontScale:F
 
     .line 1222
     invoke-virtual {p1}, Landroid/os/Parcel;->readInt()I
 
-    move-result v0
+    move-result v1
 
-    iput v0, p0, Landroid/content/res/Configuration;->mcc:I
+    iput v1, p0, Landroid/content/res/Configuration;->mcc:I
 
     .line 1223
     invoke-virtual {p1}, Landroid/os/Parcel;->readInt()I
 
-    move-result v0
+    move-result v1
 
-    iput v0, p0, Landroid/content/res/Configuration;->mnc:I
+    iput v1, p0, Landroid/content/res/Configuration;->mnc:I
 
     .line 1224
     invoke-virtual {p1}, Landroid/os/Parcel;->readInt()I
 
-    move-result v0
+    move-result v1
 
-    if-eqz v0, :cond_0
+    if-eqz v1, :cond_0
 
     .line 1225
-    new-instance v0, Ljava/util/Locale;
+    new-instance v1, Ljava/util/Locale;
+
+    invoke-virtual {p1}, Landroid/os/Parcel;->readString()Ljava/lang/String;
+
+    move-result-object v2
 
     invoke-virtual {p1}, Landroid/os/Parcel;->readString()Ljava/lang/String;
 
@@ -3570,23 +3303,17 @@
 
     move-result-object v4
 
-    invoke-virtual {p1}, Landroid/os/Parcel;->readString()Ljava/lang/String;
+    invoke-direct {v1, v2, v3, v4}, Ljava/util/Locale;-><init>(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
 
-    move-result-object v5
-
-    invoke-direct {v0, v3, v4, v5}, Ljava/util/Locale;-><init>(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
-
-    iput-object v0, p0, Landroid/content/res/Configuration;->locale:Ljava/util/Locale;
+    iput-object v1, p0, Landroid/content/res/Configuration;->locale:Ljava/util/Locale;
 
     .line 1228
     :cond_0
     invoke-virtual {p1}, Landroid/os/Parcel;->readInt()I
 
-    move-result v0
+    move-result v1
 
-    if-ne v0, v1, :cond_1
-
-    move v0, v1
+    if-ne v1, v0, :cond_1
 
     :goto_0
     iput-boolean v0, p0, Landroid/content/res/Configuration;->userSetLocale:Z
@@ -3710,33 +3437,14 @@
 
     iput v0, p0, Landroid/content/res/Configuration;->seq:I
 
-    .line 1246
-    invoke-virtual {p1}, Landroid/os/Parcel;->readInt()I
-
-    move-result v0
-
-    if-ne v0, v1, :cond_2
-
-    :goto_1
-    iput-boolean v1, p0, Landroid/content/res/Configuration;->simSetLocale:Z
-
-    iget-object v0, p0, Landroid/content/res/Configuration;->mVibeExtraConfiguration:Landroid/content/res/VibeExtraConfiguration;
-
-    invoke-virtual {v0, p1}, Landroid/content/res/VibeExtraConfiguration;->readFromParcel(Landroid/os/Parcel;)V
-
     invoke-static/range {p0 .. p1}, Landroid/content/res/Configuration$FlymeInjector;->readFromParcel(Landroid/content/res/Configuration;Landroid/os/Parcel;)V
 
     return-void
 
     :cond_1
-    move v0, v2
+    const/4 v0, 0x0
 
     goto :goto_0
-
-    :cond_2
-    move v1, v2
-
-    goto :goto_1
 .end method
 
 .method public setLayoutDirection(Ljava/util/Locale;)V
@@ -3898,16 +3606,6 @@
 
     iput v0, p0, Landroid/content/res/Configuration;->seq:I
 
-    iget-boolean v0, p1, Landroid/content/res/Configuration;->simSetLocale:Z
-
-    iput-boolean v0, p0, Landroid/content/res/Configuration;->simSetLocale:Z
-
-    iget-object v0, p0, Landroid/content/res/Configuration;->mVibeExtraConfiguration:Landroid/content/res/VibeExtraConfiguration;
-
-    iget-object v1, p1, Landroid/content/res/Configuration;->mVibeExtraConfiguration:Landroid/content/res/VibeExtraConfiguration;
-
-    invoke-virtual {v0, v1}, Landroid/content/res/VibeExtraConfiguration;->setTo(Landroid/content/res/VibeExtraConfiguration;)V
-
     invoke-static/range {p0 .. p1}, Landroid/content/res/Configuration$FlymeInjector;->initFlymeExtraFields(Landroid/content/res/Configuration;Landroid/content/res/Configuration;)V
 
     return-void
@@ -3919,9 +3617,7 @@
     .prologue
     const/4 v1, 0x0
 
-    invoke-static {}, Landroid/content/res/VibeExtraConfiguration;->getFontScale()F
-
-    move-result v0
+    const/high16 v0, 0x3f800000    # 1.0f
 
     iput v0, p0, Landroid/content/res/Configuration;->fontScale:F
 
@@ -3968,12 +3664,6 @@
     iput v1, p0, Landroid/content/res/Configuration;->densityDpi:I
 
     iput v1, p0, Landroid/content/res/Configuration;->seq:I
-
-    iput-boolean v1, p0, Landroid/content/res/Configuration;->simSetLocale:Z
-
-    iget-object v0, p0, Landroid/content/res/Configuration;->mVibeExtraConfiguration:Landroid/content/res/VibeExtraConfiguration;
-
-    invoke-virtual {v0}, Landroid/content/res/VibeExtraConfiguration;->setToDefaults()V
 
     invoke-static/range {p0 .. p0}, Landroid/content/res/Configuration$FlymeInjector;->initFlymeExtraFields(Landroid/content/res/Configuration;)V
 
@@ -4354,15 +4044,6 @@
 
     .line 810
     :cond_0
-    iget-object v2, p0, Landroid/content/res/Configuration;->mVibeExtraConfiguration:Landroid/content/res/VibeExtraConfiguration;
-
-    invoke-virtual {v2}, Landroid/content/res/VibeExtraConfiguration;->toString()Ljava/lang/String;
-
-    move-result-object v2
-
-    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    .line 812
     const/16 v2, 0x7d
 
     invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
@@ -4897,8 +4578,6 @@
     .param p1, "delta"    # Landroid/content/res/Configuration;
 
     .prologue
-    const/4 v4, 0x1
-
     .line 861
     const/4 v0, 0x0
 
@@ -4997,7 +4676,7 @@
     .line 877
     iget-object v2, p1, Landroid/content/res/Configuration;->locale:Ljava/util/Locale;
 
-    if-eqz v2, :cond_1c
+    if-eqz v2, :cond_1a
 
     iget-object v2, p1, Landroid/content/res/Configuration;->locale:Ljava/util/Locale;
 
@@ -5065,7 +4744,9 @@
     or-int/lit8 v0, v0, 0x4
 
     .line 894
-    iput-boolean v4, p0, Landroid/content/res/Configuration;->userSetLocale:Z
+    const/4 v2, 0x1
+
+    iput-boolean v2, p0, Landroid/content/res/Configuration;->userSetLocale:Z
 
     .line 896
     :cond_7
@@ -5239,7 +4920,7 @@
 
     and-int/lit16 v2, v2, 0xc0
 
-    if-nez v2, :cond_1d
+    if-nez v2, :cond_1b
 
     .line 938
     iget v2, p0, Landroid/content/res/Configuration;->screenLayout:I
@@ -5435,37 +5116,6 @@
 
     .line 989
     :cond_19
-    iget-boolean v2, p1, Landroid/content/res/Configuration;->simSetLocale:Z
-
-    if-eqz v2, :cond_1b
-
-    iget-boolean v2, p0, Landroid/content/res/Configuration;->simSetLocale:Z
-
-    if-eqz v2, :cond_1a
-
-    and-int/lit8 v2, v0, 0x4
-
-    if-eqz v2, :cond_1b
-
-    .line 990
-    :cond_1a
-    iput-boolean v4, p0, Landroid/content/res/Configuration;->simSetLocale:Z
-
-    .line 991
-    or-int/lit8 v0, v0, 0x4
-
-    .line 996
-    :cond_1b
-    iget-object v2, p0, Landroid/content/res/Configuration;->mVibeExtraConfiguration:Landroid/content/res/VibeExtraConfiguration;
-
-    iget-object v3, p1, Landroid/content/res/Configuration;->mVibeExtraConfiguration:Landroid/content/res/VibeExtraConfiguration;
-
-    invoke-virtual {v2, v3}, Landroid/content/res/VibeExtraConfiguration;->updateFrom(Landroid/content/res/VibeExtraConfiguration;)I
-
-    move-result v2
-
-    or-int/2addr v0, v2
-
 
     invoke-static {p0, p1, v0}, Landroid/content/res/Configuration$FlymeInjector;->updateFrom(Landroid/content/res/Configuration;Landroid/content/res/Configuration;I)I
 
@@ -5476,14 +5126,14 @@
 
     .line 877
     .end local v1    # "deltaScreenLayoutDir":I
-    :cond_1c
+    :cond_1a
     const/4 v2, 0x0
 
     goto/16 :goto_0
 
     .line 940
     .restart local v1    # "deltaScreenLayoutDir":I
-    :cond_1d
+    :cond_1b
     iget v2, p1, Landroid/content/res/Configuration;->screenLayout:I
 
     iput v2, p0, Landroid/content/res/Configuration;->screenLayout:I
@@ -5595,17 +5245,6 @@
 
     invoke-virtual {p1, v0}, Landroid/os/Parcel;->writeInt(I)V
 
-    iget-boolean v0, p0, Landroid/content/res/Configuration;->simSetLocale:Z
-
-    if-eqz v0, :cond_2
-
-    invoke-virtual {p1, v2}, Landroid/os/Parcel;->writeInt(I)V
-
-    :goto_2
-    iget-object v0, p0, Landroid/content/res/Configuration;->mVibeExtraConfiguration:Landroid/content/res/VibeExtraConfiguration;
-
-    invoke-virtual {v0, p1, p2}, Landroid/content/res/VibeExtraConfiguration;->writeToParcel(Landroid/os/Parcel;I)V
-
     invoke-static/range {p0 .. p2}, Landroid/content/res/Configuration$FlymeInjector;->writeToParcel(Landroid/content/res/Configuration;Landroid/os/Parcel;I)V
 
     return-void
@@ -5646,10 +5285,4 @@
     invoke-virtual {p1, v1}, Landroid/os/Parcel;->writeInt(I)V
 
     goto/16 :goto_1
-
-    .line 1210
-    :cond_2
-    invoke-virtual {p1, v1}, Landroid/os/Parcel;->writeInt(I)V
-
-    goto :goto_2
 .end method
