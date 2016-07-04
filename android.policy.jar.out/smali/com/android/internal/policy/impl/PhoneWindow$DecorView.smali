@@ -26,6 +26,8 @@
 # instance fields
 .field mFlymeDragInStatusBar:Z
 
+.field mFlymeStableInsetTop:I
+
 .field mFlymeStatusBarRect:Landroid/graphics/Rect;
 
 .field private mActionMode:Landroid/view/ActionMode;
@@ -884,7 +886,9 @@
     .param p5, "animate"    # Z
 
     .prologue
-    invoke-static {p0, p4}, Lcom/android/internal/policy/impl/PhoneWindow$FlymeInjector;->flymeGetDisplayMetricsHeight(Lcom/android/internal/policy/impl/PhoneWindow$DecorView;I)I
+    iget-object v0, p0, Lcom/android/internal/policy/impl/PhoneWindow$DecorView;->this$0:Lcom/android/internal/policy/impl/PhoneWindow;
+
+    invoke-static {p0, p1, v0, p4}, Lcom/android/internal/policy/impl/PhoneWindow$FlymeInjector;->flymeGetDisplayMetricsHeight(Lcom/android/internal/policy/impl/PhoneWindow$DecorView;Lcom/android/internal/policy/impl/PhoneWindow$ColorViewState;Lcom/android/internal/policy/impl/PhoneWindow;I)I
 
     move-result p4
 
@@ -1341,15 +1345,14 @@
     :goto_1
     or-int/2addr v10, v0
 
-    .line 3083
     iget v0, v6, Landroid/view/WindowManager$LayoutParams;->flags:I
 
     iput v0, p0, Lcom/android/internal/policy/impl/PhoneWindow$DecorView;->mLastWindowFlags:I
 
-    .line 3085
     if-eqz p1, :cond_0
 
-    .line 3086
+    invoke-static/range {p0 .. p1}, Lcom/android/internal/policy/impl/PhoneWindow$FlymeInjector;->setFlymeStableInsetTop(Lcom/android/internal/policy/impl/PhoneWindow$DecorView;Landroid/view/WindowInsets;)V
+
     invoke-virtual {p1}, Landroid/view/WindowInsets;->getStableInsetTop()I
 
     move-result v0
@@ -3161,6 +3164,8 @@
 
     .line 2866
     :cond_0
+    invoke-static/range {p0 .. p1}, Lcom/android/internal/policy/impl/PhoneWindow$FlymeInjector;->flymeDrawStatusBarBackground(Lcom/android/internal/policy/impl/PhoneWindow$DecorView;Landroid/graphics/Canvas;)V
+
     # getter for: Lcom/android/internal/policy/impl/PhoneWindow;->DEBUG:Z
     invoke-static {}, Lcom/android/internal/policy/impl/PhoneWindow;->access$1700()Z
 
@@ -3486,8 +3491,6 @@
     move-result-object v2
 
     invoke-virtual {v0, v1, p1, v2}, Lcom/android/internal/widget/BackgroundFallback;->draw(Landroid/view/ViewGroup;Landroid/graphics/Canvas;Landroid/view/View;)V
-
-    invoke-static/range {p0 .. p1}, Lcom/android/internal/policy/impl/PhoneWindow$FlymeInjector;->flymeDrawStatusBarBackground(Lcom/android/internal/policy/impl/PhoneWindow$DecorView;Landroid/graphics/Canvas;)V
 
     .line 2368
     return-void
@@ -5959,6 +5962,15 @@
 
     .prologue
     iget-object v0, p0, Lcom/android/internal/policy/impl/PhoneWindow$DecorView;->mActionMode:Landroid/view/ActionMode;
+
+    return-object v0
+.end method
+
+.method flymeGetFieldStatusColorViewState()Lcom/android/internal/policy/impl/PhoneWindow$ColorViewState;
+    .locals 1
+
+    .prologue
+    iget-object v0, p0, Lcom/android/internal/policy/impl/PhoneWindow$DecorView;->mStatusColorViewState:Lcom/android/internal/policy/impl/PhoneWindow$ColorViewState;
 
     return-object v0
 .end method
