@@ -1,5 +1,7 @@
-/board/*
-/autopatch/*
-/out/*
-/history_package/*
+/board
+/autopatch
+/out
+/history_package
+/Flyme_Done
+/workflow.xml
 /releasetools.pyc
