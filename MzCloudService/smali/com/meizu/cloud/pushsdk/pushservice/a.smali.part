@@ -91,7 +91,7 @@
     .line 55
     iget-object v0, p0, Lcom/meizu/cloud/pushsdk/pushservice/a;->a:Landroid/content/Context;
 
-    invoke-static {v0}, Lcom/meizu/cloud/pushsdk/c/e;->c(Landroid/content/Context;)Ljava/lang/String;
+    invoke-static {v0}, Lcom/meizu/cloud/pushsdk/d/e;->c(Landroid/content/Context;)Ljava/lang/String;
 
     move-result-object v0
 
@@ -397,7 +397,7 @@
 
     move-result-object v1
 
-    invoke-static {v1}, Lcom/meizu/cloud/pushsdk/c/e;->a(Ljava/lang/String;)Ljava/lang/String;
+    invoke-static {v1}, Lcom/meizu/cloud/pushsdk/d/e;->a(Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v1
 
@@ -457,7 +457,7 @@
 
     move-result-object v0
 
-    invoke-static {v0}, Lcom/meizu/cloud/pushsdk/c/e;->b(Ljava/lang/String;)Ljava/lang/String;
+    invoke-static {v0}, Lcom/meizu/cloud/pushsdk/d/e;->b(Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v0
 
@@ -609,7 +609,7 @@
     :cond_a
     iget-object v0, p0, Lcom/meizu/cloud/pushsdk/pushservice/a;->a:Landroid/content/Context;
 
-    invoke-static {v0}, Lcom/meizu/cloud/pushsdk/c/e;->c(Landroid/content/Context;)Ljava/lang/String;
+    invoke-static {v0}, Lcom/meizu/cloud/pushsdk/d/e;->c(Landroid/content/Context;)Ljava/lang/String;
 
     move-result-object v0
 
@@ -717,7 +717,7 @@
     :cond_c
     iget-object v0, p0, Lcom/meizu/cloud/pushsdk/pushservice/a;->a:Landroid/content/Context;
 
-    invoke-static {v0}, Lcom/meizu/cloud/pushsdk/c/e;->a(Landroid/content/Context;)Ljava/util/List;
+    invoke-static {v0}, Lcom/meizu/cloud/pushsdk/d/e;->a(Landroid/content/Context;)Ljava/util/List;
 
     move-result-object v1
 
