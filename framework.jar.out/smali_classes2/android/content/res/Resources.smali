@@ -6910,6 +6910,12 @@
 
     iput-object v2, p0, Landroid/content/res/Resources;->mTmpValue:Landroid/util/TypedValue;
 
+    invoke-static {}, Landroid/content/res/flymetheme/iconfilter/IconFilter;->getInstance()Landroid/content/res/flymetheme/iconfilter/IconFilter;
+
+    move-result-object v2
+
+    invoke-virtual {v2}, Landroid/content/res/flymetheme/iconfilter/IconFilter;->cleanFilter()V
+
     iput-boolean v1, p0, Landroid/content/res/Resources;->mIsFlymeThemeChange:Z
 
     .line 2700
