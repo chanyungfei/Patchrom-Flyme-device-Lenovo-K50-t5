@@ -120,6 +120,9 @@
 /dev/zero		u:object_r:zero_device:s0
 /dev/__kmsg__		u:object_r:klog_device:s0
 /dev/__properties__ u:object_r:properties_device:s0
+
+/dev/socket/flymed      u:object_r:flymed_socket:s0
+
 #############################
 # System files
 #
@@ -129,6 +132,7 @@
 /system/bin/bootanimation u:object_r:bootanim_exec:s0
 /system/bin/app_process32	u:object_r:zygote_exec:s0
 /system/bin/app_process64	u:object_r:zygote_exec:s0
+/system/bin/app_process64_original	u:object_r:zygote_exec:s0
 /system/bin/servicemanager	u:object_r:servicemanager_exec:s0
 /system/bin/surfaceflinger	u:object_r:surfaceflinger_exec:s0
 /system/bin/drmserver	u:object_r:drmserver_exec:s0
@@ -164,6 +168,10 @@
 /system/bin/dex2oat     u:object_r:dex2oat_exec:s0
 # patchoat executable has (essentially) the same requirements as dex2oat.
 /system/bin/patchoat    u:object_r:dex2oat_exec:s0
+
+/system/bin/flymed      u:object_r:flymed_exec:s0
+/system/bin/smbd        u:object_r:smbd_exec:s0
+/system/bin/nmbd        u:object_r:nmbd_exec:s0
 
 #############################
 # Vendor files
@@ -223,8 +231,14 @@
 # coredump directory for userdebug/eng devices
 /cores(/.*)?                    u:object_r:coredump_file:s0
 
+/data/misc/samba(/.*)?          u:object_r:samba_data_file:s0
+
 # Wallpaper file for other users
 /data/system/users/[0-9]+/wallpaper		u:object_r:wallpaper_file:s0
+
+/data/system/users/[0-9]+/lock_wallpaper		u:object_r:wallpaper_file:s0
+/data/system/users/[0-9]+/smart_wallpaper_target		u:object_r:wallpaper_file:s0
+
 #############################
 # efs files
 #
