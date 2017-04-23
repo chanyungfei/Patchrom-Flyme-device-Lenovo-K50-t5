@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8' standalone='yes' ?>
+<temp-patch>
+    <battery-temp patch="/sys/class/thermal/thermal_zone8/temp"/>
+    <cpu-temp patch="/sys/class/thermal/thermal_zone1/temp"/>
+    <ap-temp patch="/sys/class/thermal/thermal_zone11/temp"/>
+</temp-patch>
+
